@@ -3,7 +3,6 @@
 if [[ -z "${NVIDIA_VISIBLE_DEVICES}" ]]; then
 	# NVIDIA Environment Variables were not set - do not check / apply patch
 	echo "** Plex Transcoder will not be patched for Nvidia Hardware Decoding **"
-
 else
 	# NVIDIA Environment Variables were set - check patch exists / apply patch
 	FILENAME="/usr/lib/plexmediaserver/Plex Transcoder"
