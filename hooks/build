@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# Overrides
+if [ "${CACHE_TAG}" == develop ]; then
+	CACHE_TAG=beta
+	echo "** Overrode CACHE_TAG - develop = ${CACHE_TAG} **"
+fi
+
+# Build
+docker build --build-arg BRANCH=${SOURCE_BRANCH} --build-arg COMMIT=${SOURCE_COMMIT} --build-arg TAG=${CACHE_TAG} -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
+
