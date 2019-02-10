@@ -1,11 +1,24 @@
 #!/bin/bash
 
-# Overrides
-if [ "${CACHE_TAG}" == develop ]; then
-	CACHE_TAG=beta
-	echo "** Overrode CACHE_TAG - develop = ${CACHE_TAG} **"
+# Variables
+if [[ -z "${CACHE_TAG}" ]]; then
+	CACHE_TAG="${DOCKER_TAG}"
 fi
+
+if [[ -z "${CACHE_TAG}" ]]; then
+	CACHE_TAG=latest
+fi
+
+# Overrides
+if [ $CACHE_TAG = develop ]; then
+	CACHE_TAG=beta
+	echo "Overrode CACHE_TAG - develop: ${CACHE_TAG}"
+fi
+
+# Debug
+echo "Using BRANCH: ${SOURCE_BRANCH}"
+echo "Using COMMIT: ${SOURCE_COMMIT}"
+echo "Using TAG: ${CACHE_TAG}"
 
 # Build
 docker build --build-arg BRANCH=${SOURCE_BRANCH} --build-arg COMMIT=${SOURCE_COMMIT} --build-arg TAG=${CACHE_TAG} -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
-
