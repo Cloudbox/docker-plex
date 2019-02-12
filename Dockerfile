@@ -11,7 +11,8 @@ ARG TAG
 ENV \
 	BRANCH=${BRANCH:-Unknown} \
 	COMMIT=${COMMIT:-Unknown} \
-	TAG=${TAG:-Unknown} 	
+	TAG=${TAG:-Unknown} \
+	HEALTHCHECK_MOUNT=/mnt/unionfs
 
 # Build Output
 RUN \
