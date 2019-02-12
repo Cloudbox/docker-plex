@@ -18,8 +18,8 @@ RUN \
   	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" \
   	# Install extra cli tools
 	apt-get update && \
-	DEBIAN_FRONTEND=noninteractive apt-get install -y \
-	net-tools \
+	apt-get install -y \
+	iproute2 \
 	# Cleanup
 	apt-get -y autoremove && \
 	apt-get -y clean && \
