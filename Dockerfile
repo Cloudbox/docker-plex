@@ -17,10 +17,9 @@ ENV \
 RUN \
   	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" \
   	# Install extra cli tools
-  	printf 'deb http://archive.ubuntu.com/ubuntu %s main multiverse universe restricted\n' $(lsb_release -sc){,-security} > /etc/apt/sources.list && \
 	apt-get update && \
 	apt-get install -y \
-	netstat \
+	net-tools \
 	# Cleanup
 	apt-get -y autoremove && \
 	apt-get -y clean && \
