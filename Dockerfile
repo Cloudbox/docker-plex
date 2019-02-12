@@ -17,7 +17,7 @@ ENV \
 RUN \
   echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **"
 
-# Copy init scripts
+# Copy scripts
 COPY root/ /
 
 # Exports
