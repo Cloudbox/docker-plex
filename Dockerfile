@@ -18,7 +18,7 @@ RUN \
   	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" && \
   	# Install extra cli tools
 	apt-get update && \
-	apt-get install -y \
+	DEBIAN_FRONTEND=noninteractive apt-get install -y \
 	iproute2 \
 	&& \
 	# Cleanup
