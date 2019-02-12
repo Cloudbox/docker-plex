@@ -15,7 +15,17 @@ ENV \
 
 # Build Output
 RUN \
-  echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **"
+  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" \
+  	# Install extra cli tools
+	apt-get update && \
+	apt-get install -y \
+	netstat \
+	# Cleanup
+	apt-get -y autoremove && \
+	apt-get -y clean && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/* && \
+	rm -rf /var/tmp/*
 
 # Copy scripts
 COPY root/ /
