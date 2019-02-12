@@ -11,13 +11,25 @@ ARG TAG
 ENV \
 	BRANCH=${BRANCH:-Unknown} \
 	COMMIT=${COMMIT:-Unknown} \
-	TAG=${TAG:-Unknown} 	
+	TAG=${TAG:-Unknown} \
+	HEALTHCHECK_MOUNT=/mnt/unionfs
 
 # Build Output
 RUN \
-  echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **"
+  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" && \
+  	# Install extra cli tools
+	apt-get update && \
+	apt-get install -y \
+	iproute2 \
+	&& \
+	# Cleanup
+	apt-get -y autoremove && \
+	apt-get -y clean && \
+	rm -rf /var/lib/apt/lists/* && \
+	rm -rf /tmp/* && \
+	rm -rf /var/tmp/*
 
-# Copy init scripts
+# Copy scripts
 COPY root/ /
 
 # Exports
