@@ -19,7 +19,8 @@ RUN \
   	# Install extra cli tools
 	apt-get update && \
 	apt-get install -y \
-	iproute2 && \
+	iproute2 \
+	&& \
 	# Cleanup
 	apt-get -y autoremove && \
 	apt-get -y clean && \
