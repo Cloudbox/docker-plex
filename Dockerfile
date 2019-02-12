@@ -15,7 +15,7 @@ ENV \
 
 # Build Output
 RUN \
-  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" \
+  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" && \
   	# Install extra cli tools
 	apt-get update && \
 	apt-get install -y \
