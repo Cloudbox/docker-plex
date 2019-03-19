@@ -5,6 +5,9 @@ case ${DOCKER_TAG} in
     # Default to latest
     "")
         PLEX_TAG="latest";;
+    # Pull requests
+    "this")
+        PLEX_TAG="latest";;
     # Force develop branch to use beta tag
     "develop")
         PLEX_TAG="beta";;
