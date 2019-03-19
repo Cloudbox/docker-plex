@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Tag images with version from latest
+if [ "${DOCKER_TAG}" = "latest" ]; then
+	# Get version
+	PLEX_VERSION=$(docker run --rm --entrypoint="/bin/cat" ${IMAGE_NAME} /version.txt)
+	# Generate tag with version
+	PLEX_VERSION_TAG="${DOCKER_REPO}:${PLEX_VERSION}"
+	# Tag image with plex version
+	docker tag ${IMAGE_NAME} ${PLEX_VERSION_TAG}
+
+	echo "Tagged image with PLEX_VERSION: ${PLEX_VERSION}"
+	
+	docker push ${PLEX_VERSION_TAG}
+fi

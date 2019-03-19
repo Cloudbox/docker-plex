@@ -1,5 +1,5 @@
 # Image
-ARG TAG=latest
+ARG TAG
 FROM plexinc/pms-docker:${TAG}
 
 # Build Arguments (ref: https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)
@@ -16,7 +16,9 @@ ENV \
 
 # Build Output
 RUN \
-  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} **" && \
+	# Set plex version
+	export PLEX_VERSION="$(cat /version.txt)" && \
+  	echo "** BRANCH: ${BRANCH} - COMMIT: ${COMMIT} - TAG: ${TAG} - PLEX: ${PLEX_VERSION} **" && \
   	# Install extra cli tools
 	apt-get update && \
 	apt-get install -y \
