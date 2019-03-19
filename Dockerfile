@@ -5,6 +5,7 @@ FROM plexinc/pms-docker:${TAG}
 # Build Arguments (ref: https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact)
 ARG BRANCH
 ARG COMMIT
+ARG TAG
 
 # Environment Variables
 ENV \
