@@ -1,24 +1,26 @@
 #!/bin/bash
 
-# Variables
-if [[ -z "${CACHE_TAG}" ]]; then
-	CACHE_TAG="${DOCKER_TAG}"
-fi
-
-if [[ -z "${CACHE_TAG}" ]]; then
-	CACHE_TAG=latest
-fi
-
-# Overrides
-if [ $CACHE_TAG = develop ]; then
-	CACHE_TAG=beta
-	echo "Overrode CACHE_TAG - develop: ${CACHE_TAG}"
-fi
+# Define Plex tag
+case ${DOCKER_TAG} in
+    # Default to latest
+    "")
+        PLEX_TAG="latest";;
+    # Pull requests
+    "this")
+        PLEX_TAG="latest";;
+    # Force develop branch to use beta tag
+    "develop")
+        PLEX_TAG="beta";;
+    # Everything else use provided docker tag
+    *)
+        PLEX_TAG="${DOCKER_TAG}";;
+esac
 
 # Debug
 echo "Using BRANCH: ${SOURCE_BRANCH}"
 echo "Using COMMIT: ${SOURCE_COMMIT}"
-echo "Using TAG: ${CACHE_TAG}"
+echo "Using DOCKER_TAG: ${DOCKER_TAG}"
+echo "Using PLEX_TAG: ${PLEX_TAG}"
 
 # Build
-docker build --build-arg BRANCH=${SOURCE_BRANCH} --build-arg COMMIT=${SOURCE_COMMIT} --build-arg TAG=${CACHE_TAG} -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
+docker build --pull --build-arg BRANCH=${SOURCE_BRANCH} --build-arg COMMIT=${SOURCE_COMMIT} --build-arg TAG=${PLEX_TAG} -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
