@@ -14,7 +14,7 @@ else
 	else
 		mv /usr/lib/plexmediaserver/Plex\ Transcoder /usr/lib/plexmediaserver/Plex\ Transcoder2
 		echo "#!/bin/sh" > /usr/lib/plexmediaserver/Plex\ Transcoder
-		echo "/usr/lib/plexmediaserver/Plex\ Transcoder2 -hwaccel nvdec \"\$@\"" >> /usr/lib/plexmediaserver/Plex\ Transcoder
+		echo "exec /usr/lib/plexmediaserver/Plex\ Transcoder2 -hwaccel nvdec \"\$@\"" >> /usr/lib/plexmediaserver/Plex\ Transcoder
 		chmod 755 /usr/lib/plexmediaserver/Plex\ Transcoder
 		chmod u+x /usr/lib/plexmediaserver/Plex\ Transcoder
 		echo "** Plex Transcoder was patched to enable Nvidia Hardware Decoding **"
