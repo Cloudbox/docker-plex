@@ -3,8 +3,8 @@
 Enhanced version of the [plexinc/pms-docker](https://github.com/plexinc/pms-docker) Docker image.
 
 Enhancements:
-- Removal of Plex Relay.
-- Experimental support for Nvidia hardware accelerated transcoding (NVDEC).
+- Less error prone health-check
+
 
 [Instructions](https://github.com/plexinc/pms-docker)
 
